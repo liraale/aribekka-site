@@ -67,7 +67,7 @@ main {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 1s ease;
-  position: relative;
+  position: center center; /* la clave */
 }
 
 #nodes-container {
