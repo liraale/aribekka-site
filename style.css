@@ -79,6 +79,12 @@ h2 {
   font-weight: bold;
 }
 
+#sphere-canvas {
+  display: block;
+  margin: 3rem auto;
+  background: transparent;
+}
+
 @keyframes spin {
   from { transform: rotateY(0deg); }
   to { transform: rotateY(360deg); }
