@@ -2,26 +2,30 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AriBekka.com | Tecnología & Futuro</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="nodes.js"></script>
   <script defer src="script.js"></script>
 </head>
-<body style="background-image: url('img/tech-background.png');">
+<body>
+  <div id="overlay"></div>
   <header>AriBekka.com</header>
   <nav>
     <a href="#">Inicio</a>
-    <a href="#">Computadoras</a>
-    <a href="#">Móviles</a>
-    <a href="#">Drones</a>
-    <a href="#">Cámaras</a>
+    <a href="#">Blog</a>
+    <a href="#">Sobre mí</a>
+    <a href="#">Contacto</a>
   </nav>
   <main>
     <h2>Bienvenido al futuro digital</h2>
     <p>Explora las últimas novedades en tecnología, innovación y dispositivos inteligentes.</p>
 
-    <!-- 🌐 Esfera informativa -->
-    <canvas id="sphere-canvas" width="500" height="500"></canvas>
+    <!-- Esfera de nodos -->
+    <div id="sphere">
+      <svg id="lines"></svg>
+      <div id="nodes-container"></div>
+    </div>
   </main>
 </body>
 </html>
