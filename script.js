@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   nodes.forEach(n => {
     n.element.addEventListener('mouseenter', () => {
       const rotateY = -n.theta * (180 / Math.PI);
-      const rotateX = n.phi * (180 / Math.PI) - 90;
+      const rotateX = (90 - n.phi * (180 / Math.PI));
       rotator.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
     });
   });
