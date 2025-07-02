@@ -64,11 +64,10 @@ main {
 }
 
 #sphere-rotator {
-  width: 100%;
-  height: 100%;
+  transform-origen: 50% 50%;
   transform-style: preserve-3d;
   transition: transform 1s ease;
-  position: center center; /* la clave */
+  position: relative;
 }
 
 #nodes-container {
