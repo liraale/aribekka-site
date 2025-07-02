@@ -60,6 +60,7 @@ main {
   height: 500px;
   margin: 3rem auto;
   perspective: 1000px;
+  perspective-origin: center center; /* 👈 opcional pero útil */
 }
 
 #sphere-rotator {
