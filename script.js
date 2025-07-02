@@ -1,6 +1,7 @@
-const canvas = document.getElementById('sphere-canvar');
+const canvas = document.getElementById('sphere-canvas');
 const ctx = canvas.getContext('2d');
 const width	= canvas.width;
+const height = canvas.height;
 const radius = 200;
 const center = { x: width / 2, y: height / 2 };
 
