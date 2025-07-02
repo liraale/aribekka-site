@@ -58,7 +58,8 @@ main {
 #sphere-wrapper {
   width: 500px;
   height: 500px;
-  margin: 150px auto 0; /* 2cm arriba, centrado horizontal, 0 abajo */
+  margin: 76px auto 0; /* 2cm arriba, centrado horizontal, 0 abajo */
+  transform: translateY(-250px); /* desplaza hacia arriba medio radio */
   perspective: 1000px;
   perspective-origin: center center; /* 👈 opcional pero útil */
 }
