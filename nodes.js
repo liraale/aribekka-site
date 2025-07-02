@@ -6,8 +6,6 @@ window.techNodes = [
   { label: 'Xbox', url: 'https://www.xbox.com' },
   { label: 'PlayStation', url: 'https://www.playstation.com' },
   { label: 'Nintendo', url: 'https://www.nintendo.com' },
-  { label: 'Tesla', url: 'https://www.tesla.com' },
-  { label: 'DJI', url: 'https://www.dji.com' },
   { label: 'Realidad Virtual', url: '#' },
   { label: 'Audio', url: '#' },
   { label: 'Impresión', url: '#' },
