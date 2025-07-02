@@ -1,4 +1,4 @@
-<!-- Versión blog-tech 1.1 | Actualizado: 27-jun-2025 -->
+<!-- Versión blog-tech 1.2 | Actualizado: 02-jul-2025 -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +14,7 @@
     }
     body {
       font-family: 'Roboto', sans-serif;
-      background-image: url('tech-background.png'); /* reemplaza con tu imagen futurista */
+      background-image: url('tech-background.jpg'); /* reemplaza con tu imagen futurista */
       background-size: cover;
       background-position: center;
       color: #f0f0f0;
@@ -58,8 +58,52 @@
     p {
       line-height: 1.6;
     }
+#sphere-container {
+  width: 400px;
+  height: 400px;
+  margin: 3rem auto;
+  perspective: 800px;
+}
+#tag-sphere {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spin 20s infinite linear;
+  list-style: none;
+}
+#tag-sphere li {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+}
+#tag-sphere a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(0,0,0,0.6);
+  color: #00eaff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+@keyframes spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
   </style>
 </head>
+<script>
+  const radius = 150;
+  const tags = document.querySelectorAll('#tag-sphere li');
+  const total = tags.length;
+  tags.forEach((tag, i) => {
+    const angle = (i / total) * Math.PI * 2;
+    const x = radius * Math.cos(angle);
+    const y = radius * Math.sin(angle);
+    tag.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  });
+</script>
 <body>
   <header>AriBekka.com</header>
   <nav>
@@ -74,6 +118,21 @@
     <p>
       Explora las últimas novedades en tecnología, innovación y dispositivos inteligentes. Desde computadoras de alto rendimiento hasta los drones más avanzados—AriBekka.com es tu portal hacia lo que viene.
     </p>
+  <div id="sphere-container">
+    <ul id="tag-sphere">
+      <li><a href="https://www.apple.com">Apple</a></li>
+      <li><a href="https://www.microsoft.com">Microsoft</a></li>
+      <li><a href="https://www.android.com">Android</a></li>
+      <li><a href="https://www.asus.com">Asus</a></li>
+      <li><a href="https://www.xbox.com">Xbox</a></li>
+      <li><a href="https://www.playstation.com">PlayStation</a></li>
+      <li><a href="https://www.nintendo.com">Nintendo</a></li>
+      <li><a href="#">Realidad Virtual</a></li>
+      <li><a href="#">Audio</a></li>
+      <li><a href="#">Impresión</a></li>
+      <li><a href="#">Impresión 3D</a></li>
+    </ul>
+  </div>
   </main>
 </body>
 </html>
