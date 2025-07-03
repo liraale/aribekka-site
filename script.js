@@ -30,6 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const rotateY = -n.theta * (180 / Math.PI);
       const rotateX = (90 - n.phi * (180 / Math.PI));
       rotator.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+
+      // Correccion de orientacion de nodos
+      n.element.style.transform += `rotateY(${rotateY * -1}deg) rotateX(${rotateX * -1}deg)`;
+    });
+    n.element.addEventListener('mouseleave', () => {
+      rotator.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      n.element.style.transform = `translate3d(${n.x}px, ${n.y}px, ${n.z}px)`;
     });
   });
 });
