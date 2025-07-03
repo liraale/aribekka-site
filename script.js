@@ -1,51 +1,62 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('nodes-container');
-  const rotator = document.getElementById('sphere-rotator');
-  const radius = 200;
-  const nodes = [];
-  let isRotating = false;
+const container = document.getElementById('scene-container');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, container.clientWidth / 600, 0.1, 1000);
+camera.position.z = 300;
 
-  techNodes.forEach((nodeData, i) => {
-    const phi = Math.acos(-1 + (2 * i) / techNodes.length);
-    const theta = Math.sqrt(techNodes.length * Math.PI) * phi;
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(container.clientWidth, 600);
+container.appendChild(renderer.domElement);
 
-    const x = radius * Math.cos(theta) * Math.sin(phi);
-    const y = radius * Math.sin(theta) * Math.sin(phi);
-    const z = radius * Math.cos(phi);
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
 
-    const node = document.createElement('a');
-    node.className = 'node';
-    node.href = nodeData.url;
-    node.target = '_blank';
-    node.textContent = nodeData.label;
-    node.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
-    container.appendChild(node);
+const sphereRadius = 100;
+const segments = 16;
+const rings = 16;
 
-    nodes.push({ x, y, z, theta, phi, element: node });
-  });
+// Crear geometría de líneas (wireframe)
+const geometry = new THREE.SphereGeometry(sphereRadius, segments, rings);
+const wireframe = new THREE.WireframeGeometry(geometry);
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f0ff });
+const lines = new THREE.LineSegments(wireframe, lineMaterial);
+scene.add(lines);
 
-  // Rotar al pasar el mouse y centrar con rotacion suave
-  nodes.forEach(n => {
-    n.element.addEventListener('mouseenter', () => {
-      if (isRotating) return;
-      isRotating = true;
+// Crear puntos en las intersecciones
+const pointMaterial = new THREE.PointsMaterial({ color: 0x00f0ff, size: 3 });
+const points = new THREE.Points(geometry, pointMaterial);
+scene.add(points);
 
-      const rotateY = -n.theta * (180 / Math.PI);
-      const rotateX = (90 - n.phi * (180 / Math.PI));
+// Etiquetas HTML para algunos nodos
+const labels = [
+  { index: 0, name: 'Apple' },
+  { index: 10, name: 'Microsoft' },
+  { index: 20, name: 'Android' },
+  { index: 30, name: 'PlayStation' },
+  { index: 40, name: 'Nintendo' }
+];
 
-      rotator.style.transition = 'transform 1.2s ease-in-out';
-      rotator.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-
-      // Correccion de orientacion de nodos
-      n.element.style.transform += `rotateY(${rotateY * -1}deg) rotateX(${rotateX * -1}deg)`;
-
-      setTimeout(() => {
-        isRotating = false;
-      }, 1200);
-    });
-
-    n.element.addEventListener('mouseleave', () => {
-      n.element.style.transform = `translate3d(${n.x}px, ${n.y}px, ${n.z}px)`;
-    });
-  });
+labels.forEach(label => {
+  const div = document.createElement('div');
+  div.className = 'label';
+  div.textContent = label.name;
+  container.appendChild(div);
+  label.element = div;
 });
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+
+  // Actualizar posición de etiquetas
+  labels.forEach(label => {
+    const vertex = geometry.vertices[label.index];
+    const vector = vertex.clone().project(camera);
+    const x = (vector.x * 0.5 + 0.5) * container.clientWidth;
+    const y = (-vector.y * 0.5 + 0.5) * 600;
+    label.element.style.left = `${x}px`;
+    label.element.style.top = `${y}px`;
+  });
+}
+
+animate();
