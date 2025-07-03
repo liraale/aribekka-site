@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AriBekka.com | Tecnología & Futuro</title>
+  <title>AriBekka | Red 3D</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;500&display=swap" rel="stylesheet">
-  <script defer src="nodes.js"></script>
-  <script defer src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
   <div id="overlay"></div>
@@ -15,18 +14,12 @@
   <nav>
     <a href="#">Inicio</a>
     <a href="#">Blog</a>
-    <a href="#">Sobre mí</a>
     <a href="#">Contacto</a>
   </nav>
   <main>
-    <h2>Bienvenido al futuro digital</h2>
-    <p>Explora las últimas novedades en tecnología, innovación y dispositivos inteligentes.</p>
-
-    <div id="sphere-wrapper">
-      <div id="sphere-rotator">
-        <div id="nodes-container"></div>
-      </div>
-    </div>
+    <h2>Explora las últimas novedades en tecnología, innovación y dispositivos inteligentes.</h2>
+    <div id="scene-container"></div>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
