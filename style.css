@@ -80,13 +80,15 @@ main {
 .node {
   position: absolute;
   transform: translate3d(0, 0, 0);
-  color: #00eaff;
-  text-decoration: none;
-  font-weight: bold;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 0.4rem 0.8rem;
+  font-family: 'Orbitron', sans-serif; /*Fuente Futurista*/
+  font-weight: 300; /*Mas Fina*/
+  font-size: 0.9rem;
+  color: #00f0ff;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.3rem 0.7rem;
   border-radius: 6px;
   white-space: nowrap;
+  text-shadow: 0 0 4px #00f0ff;
   transition: transform 0.3s, background 0.3s;
 }
 .node:hover {
@@ -94,4 +96,3 @@ main {
   color: #000;
   transform: scale(1.1);
 }
-
