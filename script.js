@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('nodes-container');
   const rotator = document.getElementById('sphere-rotator');
   const radius = 200;
-  const center = { x: 250, y: 250 };
   const nodes = [];
+  let isRotating = false;
 
   techNodes.forEach((nodeData, i) => {
     const phi = Math.acos(-1 + (2 * i) / techNodes.length);
@@ -21,21 +21,30 @@ document.addEventListener('DOMContentLoaded', () => {
     node.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
     container.appendChild(node);
 
-    nodes.push({ x, y, z, element: node, theta, phi });
+    nodes.push({ x, y, z, theta, phi, element: node });
   });
 
-  // Rotar al pasar el mouse
+  // Rotar al pasar el mouse y centrar con rotacion suave
   nodes.forEach(n => {
     n.element.addEventListener('mouseenter', () => {
+      if (isRotating) return;
+      isRotating = true;
+
       const rotateY = -n.theta * (180 / Math.PI);
       const rotateX = (90 - n.phi * (180 / Math.PI));
+
+      rotator.style.transition = 'transform 1.2s ease-in-out';
       rotator.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
 
       // Correccion de orientacion de nodos
       n.element.style.transform += `rotateY(${rotateY * -1}deg) rotateX(${rotateX * -1}deg)`;
+
+      setTimeout(() => {
+        isRotating = false;
+      }, 1200);
     });
+
     n.element.addEventListener('mouseleave', () => {
-      rotator.style.transform = `rotateY(0deg) rotateX(0deg)`;
       n.element.style.transform = `translate3d(${n.x}px, ${n.y}px, ${n.z}px)`;
     });
   });
