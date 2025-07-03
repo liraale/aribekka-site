@@ -67,7 +67,7 @@ main {
 #sphere-rotator {
   transform-origen: 50% 50%;
   transform-style: preserve-3d;
-  transition: transform 1s ease;
+  transition: transform 1.2s ease-in-out;
   position: relative;
 }
 
