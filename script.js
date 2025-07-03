@@ -10,31 +10,30 @@ container.appendChild(renderer.domElement);
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
+// Crear geometría de esfera
 const sphereRadius = 100;
-const segments = 16;
-const rings = 16;
-
-// Crear geometría de la esfera
+const segments = 24;
+const rings = 24;
 const geometry = new THREE.SphereGeometry(sphereRadius, segments, rings);
 
-//Wireframe
+// Wireframe
 const wireframe = new THREE.WireframeGeometry(geometry);
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f0ff });
 const lines = new THREE.LineSegments(wireframe, lineMaterial);
 scene.add(lines);
 
-// Crear puntos en las intersecciones
+// Puntos en intersecciones
 const pointMaterial = new THREE.PointsMaterial({ color: 0x00f0ff, size: 3 });
 const points = new THREE.Points(geometry, pointMaterial);
 scene.add(points);
 
-// Etiquetas HTML para algunos nodos
+// Etiquetas HTML
 const labels = [
   { index: 0, name: 'Apple' },
-  { index: 10, name: 'Microsoft' },
-  { index: 20, name: 'Android' },
-  { index: 30, name: 'PlayStation' },
-  { index: 40, name: 'Nintendo' }
+  { index: 50, name: 'Microsoft' },
+  { index: 100, name: 'Android' },
+  { index: 150, name: 'PlayStation' },
+  { index: 200, name: 'Nintendo' }
 ];
 
 labels.forEach(label => {
