@@ -14,8 +14,10 @@ const sphereRadius = 100;
 const segments = 16;
 const rings = 16;
 
-// Crear geometría de líneas (wireframe)
+// Crear geometría de la esfera
 const geometry = new THREE.SphereGeometry(sphereRadius, segments, rings);
+
+//Wireframe
 const wireframe = new THREE.WireframeGeometry(geometry);
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f0ff });
 const lines = new THREE.LineSegments(wireframe, lineMaterial);
@@ -50,10 +52,11 @@ function animate() {
 
   // Actualizar posición de etiquetas
   labels.forEach(label => {
-    const vertex = geometry.vertices[label.index];
-    const vector = vertex.clone().project(camera);
-    const x = (vector.x * 0.5 + 0.5) * container.clientWidth;
-    const y = (-vector.y * 0.5 + 0.5) * 600;
+    const pos = new THREE.Vector3();
+    pos.fromBufferAttribute(geometry.attributes.position, label.index);
+    const projected = pos.clone().project(camera);
+    const x = (projected.x * 0.5 + 0.5) * container.clientWidth;
+    const y = (-projected.y * 0.5 + 0.5) * 600;
     label.element.style.left = `${x}px`;
     label.element.style.top = `${y}px`;
   });
