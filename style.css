@@ -1,11 +1,10 @@
 body {
   margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: url('img/futuristic-background.png') no-repeat center center fixed;
+  font-family: 'Orbitron', sans-serif;
+  background: url('img/futuristic_background.png') no-repeat center center fixed;
   background-size: cover;
-  color: #f0f0f0;
-  position: relative;
+  color: #00f0ff;
+  overflow: hidden;
 }
 
 #overlay {
@@ -15,84 +14,24 @@ body {
   z-index: 0;
 }
 
-header {
+header, nav, main {
   position: relative;
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 3rem;
-  font-weight: bold;
-  color: #00eaff;
-  z-index: 1;
-}
-
-nav {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 1rem;
-  z-index: 1;
-}
-
-nav a {
-  color: #00eaff;
-  text-decoration: none;
-  font-weight: bold;
-}
-nav a:hover {
-  color: white;
-}
-
-main {
-  position: relative;
-  max-width: 900px;
-  margin: 3rem auto;
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.65);
-  border-radius: 8px;
   z-index: 1;
   text-align: center;
 }
 
-#sphere-wrapper {
-  width: 500px;
-  height: 500px;
-  margin: 76px auto 0; /* 2cm arriba, centrado horizontal, 0 abajo */
-  transform: translateY(180px); /* desplaza hacia arriba medio radio */
-  perspective: 1000px;
-  perspective-origin: center center; /* 👈 opcional pero útil */
-}
-
-#sphere-rotator {
-  transform-origen: 50% 50%;
-  transform-style: preserve-3d;
-  transition: transform 1.2s ease-in-out;
+#scene-container {
+  width: 100%;
+  height: 600px;
+  margin-top: 2rem;
   position: relative;
 }
 
-#nodes-container {
+.label {
   position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
-
-.node {
-  position: absolute;
-  transform: translate3d(0, 0, 0);
-  font-family: 'Orbitron', sans-serif; /*Fuente Futurista*/
-  font-weight: 300; /*Mas Fina*/
-  font-size: 0.9rem;
   color: #00f0ff;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 0.3rem 0.7rem;
-  border-radius: 6px;
-  white-space: nowrap;
+  font-size: 0.8rem;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
   text-shadow: 0 0 4px #00f0ff;
-  transition: transform 0.3s, background 0.3s;
-}
-.node:hover {
-  background: #00eaff;
-  color: #000;
-  transform: scale(1.1);
 }
